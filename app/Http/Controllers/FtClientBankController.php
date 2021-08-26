@@ -34,24 +34,26 @@ class FtClientBankController extends Controller
       $this->sendToBank($bank_data_xml, $token);
     }
 
-    public function toBankData()
+    public function toBankData(Request $request)
     {
-        //
+        if($request->hasFile('packet') && $request->file('packet')->isValid()) {
+          $input = $request->file('packet');
+          $bank_data_xml = $input->getContent();
+          $bank_data_sxml_obj = simplexml_load_string($bank_data_xml, "SimpleXMLElement", LIBXML_NOCDATA);
+          $bank_data_json = json_encode($bank_data_sxml_obj);
+          $bank_data = json_decode($bank_data_json,TRUE);
+          $bank_data_to_db = BankPacket::create($bank_data);
+          return $this->sendResponse($bank_data_to_db->toArray(), 'Bank data saveed successfully.');
+        }
+        else return $this->sendError('No file.');
     }
 
     public function sendToBank($xml, $token)
     {
       $url = url('/api/bankPaketData');
-      $options = [
-      'headers' => [
-        'Authorization' => 'Bearer '.$token,
-        'Content-Type' => 'text/xml; charset=UTF8'
-      ],
-      'body' => $xml,
-      ];
+      $response = Http::withToken($token)->attach('packet', $xml, 'packet.xml')->post($url);
+      echo $response;
 
-      $respons = Http::withToken($token)->post($url);
-      return response()->json($response, 200);
     }
 
     private function sendResponse($result, $message)
