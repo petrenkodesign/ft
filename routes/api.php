@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+use App\Http\Controllers\FtClientBankController;
+Route::middleware('static.token:api')->group( function () {
+   Route::post('clientPaketData', [FtClientBankController::class,'getClientData']);
+   Route::post('bankPaketData', [FtClientBankController::class,'toBankData']);
 });

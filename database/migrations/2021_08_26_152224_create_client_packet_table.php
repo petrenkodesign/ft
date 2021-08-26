@@ -13,8 +13,13 @@ class CreateClientPacketTable extends Migration
      */
     public function up()
     {
-        Schema::create('client_packet', function (Blueprint $table) {
-            $table->id();
+        Schema::create('client_packets', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('surname');
+            $table->date('birthday');
+            $table->float('total');
+            $table->text('comment');
             $table->timestamps();
         });
     }

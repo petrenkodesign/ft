@@ -13,8 +13,13 @@ class CreateBankPacketTable extends Migration
      */
     public function up()
     {
-        Schema::create('bank_packet', function (Blueprint $table) {
+        Schema::create('bank_packets', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('surname');
+            $table->date('birthday');
+            $table->float('total');
+            $table->text('comment');
             $table->timestamps();
         });
     }
