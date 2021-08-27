@@ -43,7 +43,7 @@ class FtClientBankController extends Controller
           $bank_data_json = json_encode($bank_data_sxml_obj);
           $bank_data = json_decode($bank_data_json,TRUE);
           $bank_data_to_db = BankPacket::create($bank_data);
-          return $this->sendResponse($bank_data_to_db->toArray(), 'Bank data saveed successfully.');
+          return $this->sendResponse($bank_data_to_db->toArray(), 'Bank data saved successfully.');
         }
         else return $this->sendError('No file.');
     }

@@ -1,0 +1,102 @@
+{
+	"info": {
+		"_postman_id": "7f25f0a8-3009-4871-a07e-9452aa5f83fd",
+		"name": "TF_Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "FT_client",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "PVMoLzcJXfhUK1UHuvRrkgupfPoZKFbT",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "packet",
+							"value": "{ \"name\":\"John\", \"surname\":\"Doe\",\"birthday\":\"2000-01-01\",\"total\":2000,\"comment\":\"New Client\"}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/clientPaketData",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"clientPaketData"
+					],
+					"query": [
+						{
+							"key": "packet",
+							"value": "{ \"name\":\"John\", \"surname\":\"Doe\",\"birthday\":\"01.01.2000\",\"total\":2000,\"comment\":\"New Client\"}",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FT_bank",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "PVMoLzcJXfhUK1UHuvRrkgupfPoZKFbT",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "packet",
+							"type": "file",
+							"src": "/home/alex/Downloads/_PRJ/test.xml"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/bankPaketData",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"bankPaketData"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
